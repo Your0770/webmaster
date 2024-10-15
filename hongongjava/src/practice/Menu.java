@@ -6,7 +6,9 @@ public class Menu {
 		String[] menu = {"", 
 				""};
 		
-//		int ranNo = Math.random(menu.length*100);
+		int ranNo = (int)(Math.random()*menu.length) + 1;
+		
+		
 		
 		
 	} //main

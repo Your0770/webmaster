@@ -51,7 +51,7 @@ public class MemberListServlet extends HttpServlet {
 		}
 //		/*
 		
-		out.print("<table>");
+		out.print("<table width=500px height=500px border = 1px solid black>");
 		out.print("<tr>");
 		out.print("<th>아이디</th>");
 		out.print("<th>비밀번호</th>");

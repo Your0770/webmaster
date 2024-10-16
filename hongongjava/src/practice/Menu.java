@@ -19,8 +19,8 @@ public class Menu {
 				};
 		boolean run = true;
 		Scanner sc = new Scanner(System.in);
+		System.out.println("엔터를 입력하세요.");
 		while(run) {
-			System.out.println("엔터를 입력하세요.");
 			String enter = sc.nextLine();
 			switch(enter) {
 			case ""  : 

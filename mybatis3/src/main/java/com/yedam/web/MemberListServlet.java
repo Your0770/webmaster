@@ -19,6 +19,8 @@ import com.yedam.vo.Member;
 /**
  * Servlet implementation class MemberListServlet
  */
+//IOC (제어의 역전)
+//객체 생성 -> init() -> service() -> destroy() : 서블릿의 생명주기
 @WebServlet("/MemberListServlet")
 public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,29 +47,30 @@ public class MemberListServlet extends HttpServlet {
 		MemberMapper dao = sqlSession.getMapper(MemberMapper.class);
 		
 		List<Member> result = dao.members();
+		/*
 		for(Member member : result) {
 			out.print(member.toString());
 			out.print("<br>");
 		}
-//		/*
+		*/
 		
-		out.print("<table width=500px height=500px border = 1px solid black>");
-		out.print("<tr>");
+		out.print("<table width=500px height=300px style='border-collapse:collapse' border = 1px solid black>");
+		out.print("<thead><tr>");
 		out.print("<th>아이디</th>");
 		out.print("<th>비밀번호</th>");
 		out.print("<th>이름</th>");
 		out.print("<th>연락처</th>");
-		out.print("</tr>");
+		out.print("</tr></thead><tbody>");
 		for(Member member : result) {
 			out.print("<tr>");
-			out.print("<td>" + member.getMemberId() +  "</td>");
+			out.print("<td><a href='member.action?mid=" + member.getMemberId() + "'>" + member.getMemberId() +  "</a></td>");
 			out.print("<td>" + member.getPassword() +  "</td>");
 			out.print("<td>" + member.getMemberName() +  "</td>");
 			out.print("<td>" + member.getPhone() +  "</td>");
 			out.print("</tr>");
 		}
-		out.print("</table>");
-//		*/
+		out.print("</tbody></table>");
+		out.print("<a href='./'>첫페이지</a>");
 	}
 
 	/**

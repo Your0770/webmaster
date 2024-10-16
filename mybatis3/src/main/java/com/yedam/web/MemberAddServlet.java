@@ -51,7 +51,11 @@ public class MemberAddServlet extends HttpServlet {
 		out.print("<h3>응답정보를 처리하는 객체: response</h3>");
 		out.print("<a href='index.html'>첫페이지로 이동</a>");
 	}
-
+	 void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf8");
+		PrintWriter out = response.getWriter();
+		out.print("<a href='index.html'>첫페이지로 이동</a>");
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -77,9 +81,11 @@ public class MemberAddServlet extends HttpServlet {
 		try {
 			if(dao.insertMember(member)==1) {
 				response.getWriter().print("OK");
+				main(request, response);
 			}
 		} catch(Exception e) {
 			response.getWriter().print("NG");
+			main(request, response);
 		}
 		
 	}

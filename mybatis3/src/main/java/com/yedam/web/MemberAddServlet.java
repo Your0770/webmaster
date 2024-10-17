@@ -30,14 +30,14 @@ public class MemberAddServlet extends HttpServlet {
 	// byte, short, int, char => 객체(serializable) 
 	
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
-    public MemberAddServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
+	
+	/**
+	 * Default constructor. 
+	 */
+	public MemberAddServlet() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -51,7 +51,7 @@ public class MemberAddServlet extends HttpServlet {
 		out.print("<h3>응답정보를 처리하는 객체: response</h3>");
 		out.print("<a href='index.html'>첫페이지로 이동</a>");
 	}
-	 void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf8");
 		PrintWriter out = response.getWriter();
 		out.print("<a href='index.html'>첫페이지로 이동</a>");
@@ -89,5 +89,5 @@ public class MemberAddServlet extends HttpServlet {
 		}
 		
 	}
-
+	
 }

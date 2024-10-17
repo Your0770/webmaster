@@ -45,14 +45,24 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 <%= paging %>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
+    <%if(paging.isPrev()) { %>
+    	<li class="page-item" aria-current="page">
+      		<a class="page-link" href="boardList.do?page=<%=paging.getStartPage()-1%>">Previous</a>
+    <% } else { %>
     <li class="page-item disabled">
       <a class="page-link">Previous</a>
+      <%} %>
     </li>
     <% for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){ %>
     <li class="page-item"><a class="page-link" href="boardList.do?page=<%=p %>"><%=p %></a></li>
     <%} %>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+    <%if(paging.isNext()) { %>
+    	<li class="page-item" aria-current="page">
+      		<a class="page-link" href="boardList.do?page=<%=paging.getEndPage()+1%>">Next</a>
+    <% } else { %>
+    <li class="page-item disabled">
+      <a class="page-link">Next</a>
+      <%} %>
     </li>
   </ul>
 </nav>

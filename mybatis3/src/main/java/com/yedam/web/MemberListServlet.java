@@ -24,15 +24,15 @@ import com.yedam.vo.Member;
 @WebServlet("/MemberListServlet")
 public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MemberListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+	
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public MemberListServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -52,7 +52,7 @@ public class MemberListServlet extends HttpServlet {
 			out.print(member.toString());
 			out.print("<br>");
 		}
-		*/
+		 */
 		
 		out.print("<table width=500px height=300px style='border-collapse:collapse' border = 1px solid black>");
 		out.print("<thead><tr>");
@@ -72,7 +72,7 @@ public class MemberListServlet extends HttpServlet {
 		out.print("</tbody></table>");
 		out.print("<a href='./'>첫페이지</a>");
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -80,5 +80,5 @@ public class MemberListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
 }

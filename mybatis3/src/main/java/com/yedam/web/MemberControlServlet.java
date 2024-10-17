@@ -18,16 +18,16 @@ import com.yedam.vo.Member;
 //객체 생성 -> init() -> service() -> destroy
 @WebServlet("/member.action")
 public class MemberControlServlet extends HttpServlet {
-
+	
 	public MemberControlServlet() {
 		System.out.println("MemberControl 객체 생성");
 	}
-
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("최초요청이면 init 실행");
 	}
-
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
@@ -39,14 +39,14 @@ public class MemberControlServlet extends HttpServlet {
 		String id = req.getParameter("mid"); // http://localhost/mybatis3/member.action?mid=user01
 		
 		if (req.getMethod().equals("GET")) {
-
-
+			
+			
 			Member member = dao.selectMember(id);
 			if (member == null) {
 				resp.getWriter().print("조회된 정보가 없습니다.");
 				return;
 			}
-
+			
 			String str = "<h3>회원정보</h3>";
 			str += "<form action='member.action' method='post'>";
 			str += "<input type='hidden' name='mid' value='" + member.getMemberId() + "'>";
@@ -58,7 +58,7 @@ public class MemberControlServlet extends HttpServlet {
 			str += "</table>";
 			str += "</form>";
 			str += "<a href='MemberListServlet'>목록으로</a>";
-
+			
 			resp.getWriter().print(str);
 		} else if (req.getMethod().equals("POST")) {
 			int result = dao.deleteMember(id);
@@ -69,12 +69,12 @@ public class MemberControlServlet extends HttpServlet {
 			}
 			resp.getWriter().print("<a href='MemberListServlet'>목록으로</a>");
 		}
-
+		
 	}
-
+	
 	@Override
 	public void destroy() {
 		System.out.println("서버가 종료될 때 한 번 실행");
 	}
-
+	
 }

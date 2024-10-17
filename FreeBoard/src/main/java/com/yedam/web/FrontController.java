@@ -29,6 +29,15 @@ public class FrontController extends HttpServlet{
 		// 회원등록 1)등록화면 2)등록처리 
 		map.put("/memberAddForm.do", new MemberAddFormControl());
 		map.put("/memberAdd.do", new MemberAddControl());
+		
+		map.put("/boardList.do", new BoardListControl());
+		map.put("/board.do", new BoardControl());
+		// 글등록 (등록화면 -> 화면처리)
+		map.put("/addBoardForm.do", new AddBoardForm());
+		map.put("/addBoard.do", new AddBoardControl());
+		// 글수정 (수정화면 -> 변경처리)
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		map.put("/removeBoard.do", new removeBoardControl());
 	}
 	
 	@Override

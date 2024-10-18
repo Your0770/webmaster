@@ -18,12 +18,18 @@ public class ModifyBoardControl implements Control {
 		// GET: 수정화면 , POST: 수정처리
 		req.setCharacterEncoding("utf-8");
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		BoardService svc = new BoardServiceImpl();
 
 		if (req.getMethod().equals("GET")) {
 			BoardVO board = svc.searchBoard(Integer.parseInt(bno));
 			req.setAttribute("boardvo", board);
-
+			req.setAttribute("page", page);
+			req.setAttribute("keyword", kw);
+			req.setAttribute("searchCondition", sc);
+			
 			req.getRequestDispatcher("/WEB-INF/jsp/modifyForm.jsp").forward(req, resp);
 
 		} else if (req.getMethod().equals("POST")) {
@@ -38,11 +44,14 @@ public class ModifyBoardControl implements Control {
 			
 			if (svc.modifyBoard(board)) {
 				// 정상처리 -> 목록으로 이동
-				resp.sendRedirect("boardList.do");
+				resp.sendRedirect("boardList.do?searchCondition=" + sc + "&keyword=" + kw + "&page=" + page);
 			} else {
 				// 비정상처리 ->
 				board = svc.searchBoard(Integer.parseInt(bno));
 				req.setAttribute("boardvo", board);
+				req.setAttribute("page", page);
+				req.setAttribute("page", page);
+				req.setAttribute("keyword", kw);
 				req.setAttribute("msg", "수정할 게시글이 없습니다.");
 				req.getRequestDispatcher("/WEB-INF/jsp/modifyForm.jsp").forward(req, resp);
 

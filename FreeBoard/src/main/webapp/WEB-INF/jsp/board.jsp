@@ -8,6 +8,9 @@
 BoardVO board = (BoardVO) request.getAttribute("boardvo");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 String wdate = sdf.format(board.getWriteDate());
+String pg = (String) request.getAttribute("page");
+String sc = (String) request.getParameter("searchCondition");
+String kw = (String) request.getParameter("keyword");
 %>
 
 <form action="">
@@ -51,10 +54,10 @@ String wdate = sdf.format(board.getWriteDate());
 <jsp:include page="../includes/footer.jsp"></jsp:include>
 <script>
 	document.querySelector('input[value="수정"]').addEventListener('click', function(e){
-		location.href = 'modifyBoard.do?bno=<%=board.getBoardNo() %>';
+		location.href = 'modifyBoard.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>&bno=<%=board.getBoardNo() %>';
 	});
 	document.querySelector('input[value="삭제"]').addEventListener('click', function(e){
-		location.href = 'removeBoard.do?bno=<%=board.getBoardNo() %>';
+		location.href = 'removeBoard.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>&bno=<%=board.getBoardNo() %>';
 	});
 	
 		

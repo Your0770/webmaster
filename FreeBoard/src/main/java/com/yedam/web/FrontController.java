@@ -37,7 +37,9 @@ public class FrontController extends HttpServlet{
 		map.put("/addBoard.do", new AddBoardControl());
 		// 글수정 (수정화면 -> 변경처리)
 		map.put("/modifyBoard.do", new ModifyBoardControl());
-		map.put("/removeBoard.do", new removeBoardControl());
+		map.put("/removeBoard.do", new RemoveBoardControl());
+		map.put("/loginForm.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
 	}
 	
 	@Override

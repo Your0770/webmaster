@@ -1,17 +1,32 @@
-<%@page import="com.yedam.common.PageDTO"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.List"%>
-<%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="../includes/header.jsp"></jsp:include>
 
 <h3>글목록</h3>
 
-<%
-List<BoardVO> list = (List<BoardVO>) request.getAttribute("boardList");
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-%>
+<form class="row g-3">
+	<div class="col-md-2" action="boardList.do">
+		<select name="searchCondition" class="form-select">
+			<option selected value="">선택하세요.</option>
+			<option value="T" ${searchCondition == "T" ? "selected" : "" }>제목</option>
+			<option value="W" ${searchCondition == "W" ? "selected" : "" }>작성자</option>
+			<option value="TW" ${searchCondition == "TW" ? "selected" : "" }>제목
+				& 작성자</option>
+		</select>
+	</div>
+
+	<div class="col-md-4">
+		<input type="text" class="form-control" name="keyword"
+			value='${keyword }'>
+	</div>
+
+	<div class="col-md-1">
+		<button type="submit" class="btn btn-primary">검색</button>
+	</div>
+</form>
+
 <table class="table">
 	<thead>
 		<tr>
@@ -23,48 +38,58 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		</tr>
 	</thead>
 	<tbody>
-		<%
-		for (BoardVO board : list) {
-			String wdate = sdf.format(board.getWriteDate());
-		%>
-		<tr>
-			<td><%=board.getBoardNo()%></td>	
-			<td><a href='board.do?bno=<%=board.getBoardNo()%>'><%=board.getTitle()%></a></td>
-			<td><%=board.getWriter()%></td>
-			<td><%=wdate%></td>
-			<td><%=board.getViewCnt() %>
-		</tr>
-		<%
-		}
-		%>
+
+		<c:forEach var="board" items="${boardList }">
+			<tr>
+				<td><c:out value="${board.boardNo }" /></td>
+				<td><a
+					href='board.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${page.page }&bno=${board.boardNo}'>${board.title}</a></td>
+				<td><c:out value="${board.writer }" /></td>
+				<td><fmt:formatDate value="${board.writeDate }"
+						pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				<td><c:out value="${board.viewCnt }" /></td>
+			</tr>
+		</c:forEach>
+
 	</tbody>
 </table>
-<%
-	PageDTO paging = (PageDTO) request.getAttribute("page");
-%>
-<%= paging %>
+
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <%if(paging.isPrev()) { %>
-    	<li class="page-item" aria-current="page">
-      		<a class="page-link" href="boardList.do?page=<%=paging.getStartPage()-1%>">Previous</a>
-    <% } else { %>
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
-      <%} %>
-    </li>
-    <% for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){ %>
-    <li class="page-item"><a class="page-link" href="boardList.do?page=<%=p %>"><%=p %></a></li>
-    <%} %>
-    <%if(paging.isNext()) { %>
-    	<li class="page-item" aria-current="page">
-      		<a class="page-link" href="boardList.do?page=<%=paging.getEndPage()+1%>">Next</a>
-    <% } else { %>
-    <li class="page-item disabled">
-      <a class="page-link">Next</a>
-      <%} %>
-    </li>
-  </ul>
+	<ul class="pagination justify-content-center">
+		<c:choose>
+			<c:when test="${page.prev }">
+				<li class="page-item"><a class="page-link"
+					href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${page.startPage - 1}">Previous</a>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item disabled"><a class="page-link">Previous</a>
+			</c:otherwise>
+		</c:choose>
+		</li>
+		<c:forEach var="p" begin="${page.startPage }" end="${page.endPage }"
+			step="1">
+			<c:choose>
+				<c:when test="${p == page.page }">
+					<li class="page-item active" aria-current="page"><span
+						class="page-link">${p }</span></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link"
+						href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${p}">${p}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${page.next }">
+				<li class="page-item"><a class="page-link"
+					href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${page.endPage + 1}">Next</a>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item disabled"><a class="page-link">Next</a>
+			</c:otherwise>
+		</c:choose>
+		</li>
+	</ul>
 </nav>
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.SearchDTO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
 
@@ -13,9 +14,14 @@ public class Apptest {
 		SqlSession sqlSession = DataSource.getInstance().openSession();
 		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 		
-		List<BoardVO> list = mapper.listWithPage(3);
-		for(BoardVO bvo2 : list) {
-			System.out.println(bvo2.toString());
+		SearchDTO search = new SearchDTO();
+		search.setKeyword("1111");
+		search.setSearchCondition("T");
+		search.setPage(2);
+		
+		List<BoardVO> list = mapper.listWithPage(search);
+		for(BoardVO bvo : list) {
+			System.out.println(bvo.toString());
 		}
 		
 	}

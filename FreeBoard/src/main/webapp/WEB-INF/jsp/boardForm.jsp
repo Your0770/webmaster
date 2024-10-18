@@ -4,6 +4,7 @@
 <h3>등록화면</h3>
 <%
 String msg = (String) request.getAttribute("msg");
+String logId = (String) session.getAttribute("logId");
 if (msg != null) {
 %>
 <p><%=msg%></p>
@@ -11,6 +12,7 @@ if (msg != null) {
 }
 %>
 <form action="addBoard.do" method="get">
+	<input type="hidden" name="writer" value="<%=logId %>">
 	<table class="table">
 		<tr>
 			<th>제목</th>
@@ -23,7 +25,7 @@ if (msg != null) {
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" name="writer" class="form-control"></td>
+			<td><%=logId %></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">

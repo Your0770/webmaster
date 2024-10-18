@@ -11,25 +11,31 @@ import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
 
-public class removeBoardControl implements Control {
+public class RemoveBoardControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		String kw = req.getParameter("keyword");
+		String sc = req.getParameter("searchCondition");
 		BoardService svc = new BoardServiceImpl();
 		
 		if (req.getMethod().equals("GET")) {
 			BoardVO board = svc.searchBoard(Integer.parseInt(bno));
 			req.setAttribute("boardvo", board);
+			req.setAttribute("page", page);
+			req.setAttribute("keyword", kw);
+			req.setAttribute("searchCondition", sc);
 
 			req.getRequestDispatcher("/WEB-INF/jsp/removeBoard.jsp").forward(req, resp);
 
 		} else if(req.getMethod().equals("POST")){
 			if(svc.removeBoard(Integer.parseInt(bno))) {
-				resp.sendRedirect("boardList.do");
+				resp.sendRedirect("boardList.do?searchCondition=" + sc +  "&keyword=" + kw + "&page="+ page);
 			}else {
-				resp.sendRedirect("board.do?bno=" + bno);
+				resp.sendRedirect("board.do?searchCondition=" + sc + "&keyword=" + kw + "&page=" + page +"&bno=" + bno);
 			}
 			
 		}

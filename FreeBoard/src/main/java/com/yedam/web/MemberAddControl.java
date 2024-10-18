@@ -35,8 +35,9 @@ public class MemberAddControl implements Control {
 		} catch (Exception e) {
 			// 등록화면으로 이동
 			e.printStackTrace();
-			resp.sendRedirect("memberAddForm.do");  //url 바뀜
-//			req.getRequestDispatcher("memberAddForm.do").forward(req, resp);  //url은 안바뀌고 값이 추가됨
+			req.setAttribute("msg", "등록하는 중 오류가 발생했습니다.");
+//			resp.sendRedirect("memberAddForm.do");  //url 바뀜
+			req.getRequestDispatcher("memberAddForm.do").forward(req, resp);  //url은 안바뀌고 값이 추가됨
 		}
 	}
 

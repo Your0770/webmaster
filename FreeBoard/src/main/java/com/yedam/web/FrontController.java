@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-@WebServlet("*.do")
+//@WebServlet("*.do")
 public class FrontController extends HttpServlet{
 	Map<String, Control> map;
 	
@@ -40,6 +40,8 @@ public class FrontController extends HttpServlet{
 		map.put("/removeBoard.do", new RemoveBoardControl());
 		map.put("/loginForm.do", new LoginControl());
 		map.put("/logout.do", new LogoutControl());
+		map.put("/javascript.do", new javascriptControl());
+		
 	}
 	
 	@Override

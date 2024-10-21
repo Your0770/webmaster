@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="../includes/header.jsp"></jsp:include>
-<%
-String msg = (String) request.getAttribute("msg");
-if (msg != null) {
-%>
-<p><%=msg%></p>
-<%
-}
-%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${msg != null }">
+<p>${msg }</p>
+</c:if>
+
 	<form action="memberAdd.do">
 		<table class="table">
 			<tr>
@@ -32,4 +28,3 @@ if (msg != null) {
 			</tr>
 		</table>
 	</form>
-<jsp:include page="../includes/footer.jsp"></jsp:include>

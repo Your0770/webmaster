@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<jsp:include page="../includes/header.jsp"></jsp:include>
 
 <h3>글목록</h3>
 
@@ -43,7 +42,7 @@
 			<tr>
 				<td><c:out value="${board.boardNo }" /></td>
 				<td><a
-					href='board.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${page.page }&bno=${board.boardNo}'>${board.title}</a></td>
+					href='board.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${page.page}&bno=${board.boardNo}'>${board.title}</a></td>
 				<td><c:out value="${board.writer }" /></td>
 				<td><fmt:formatDate value="${board.writeDate }"
 						pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -92,4 +91,3 @@
 	</ul>
 </nav>
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>

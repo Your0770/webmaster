@@ -30,7 +30,7 @@ public class ModifyBoardControl implements Control {
 			req.setAttribute("keyword", kw);
 			req.setAttribute("searchCondition", sc);
 			
-			req.getRequestDispatcher("/WEB-INF/jsp/modifyForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("/board/modifyForm.tiles").forward(req, resp);
 
 		} else if (req.getMethod().equals("POST")) {
 
@@ -49,7 +49,6 @@ public class ModifyBoardControl implements Control {
 				// 비정상처리 ->
 				board = svc.searchBoard(Integer.parseInt(bno));
 				req.setAttribute("boardvo", board);
-				req.setAttribute("page", page);
 				req.setAttribute("page", page);
 				req.setAttribute("keyword", kw);
 				req.setAttribute("msg", "수정할 게시글이 없습니다.");

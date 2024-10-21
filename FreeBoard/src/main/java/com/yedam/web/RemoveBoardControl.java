@@ -29,7 +29,7 @@ public class RemoveBoardControl implements Control {
 			req.setAttribute("keyword", kw);
 			req.setAttribute("searchCondition", sc);
 
-			req.getRequestDispatcher("/WEB-INF/jsp/removeBoard.jsp").forward(req, resp);
+			req.getRequestDispatcher("board/removeForm.tiles").forward(req, resp);
 
 		} else if(req.getMethod().equals("POST")){
 			if(svc.removeBoard(Integer.parseInt(bno))) {

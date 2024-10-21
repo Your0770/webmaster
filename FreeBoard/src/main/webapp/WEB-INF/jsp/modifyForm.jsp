@@ -1,50 +1,41 @@
 <%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="../includes/header.jsp"></jsp:include>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h3>수정화면</h3>
-<%
-String msg = (String) request.getAttribute("msg");
-String pg = (String) request.getAttribute("page");
-String kw = (String) request.getAttribute("keyword");
-String sc = (String) request.getAttribute("searchCondition");
-String logId = (String) session.getAttribute("logId");
-BoardVO board = (BoardVO) request.getAttribute("boardvo");
-if (msg != null) {
-%>
-<p><%=msg%></p>
-<%
-}
-%>
+<c:if test="${msg != null }">
+<p>${msg }</p>
+</c:if>
+
 <form action="modifyBoard.do" method="post">
-	<input type="hidden" name="bno" value="<%=board.getBoardNo()%>">
-	<input type="hidden" name="page" value="<%=pg%>">
-	<input type="hidden" name="keyword" value="<%=kw%>">
-	<input type="hidden" name="searchCondition" value="<%=sc%>">
+	<input type="hidden" name="bno" value="${boardvo.boardNo }">
+	<input type="hidden" name="page" value="${page}">
+	<input type="hidden" name="keyword" value="${keyword}">
+	<input type="hidden" name="searchCondition" value="${searchCondition}">
 	<table class="table">
 		<tr>
 			<th>글번호</th>
-			<td><%=board.getBoardNo()%></td>
+			<td>${boardvo.boardNo }</td>
 			<th>조회</th>
-			<td><%=board.getViewCnt()%></td>
+			<td>${boardvo.viewCnt}</td>
 		</tr>
 		<tr>
 			<th>제목</th>
 			<td colspan="3"><input type="text" name="title"
-				class="form-control" value="<%=board.getTitle()%>"></td>
+				class="form-control" value="${boardvo.title}"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td colspan="3"><textarea rows="3" cols="30" name="content"
-					class="form-control"><%=board.getContent()%></textarea></td>
+					class="form-control">${boardvo.content}</textarea></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td colspan="3"><%=board.getWriter()%></td>
+			<td colspan="3">${boardvo.writer}</td>
 		</tr>
 		<tr>
 			<td colspan="4" align="center">
-				<button type="submit" class="btn btn-success" <%=logId != null && logId.equals(board.getWriter()) ? "" : "disabled" %>>저장</button>
+				<button type="submit" class="btn btn-success" <c:set var="check" value="${logId==boardvo.writer || pm=='Admin' ? '' : 'disabled' }"></c:set><c:out value="${check}"></c:out>>저장</button>
 				<button type="reset" class="btn btn-secondary">취소</button>
 			</td>
 		</tr>
@@ -54,9 +45,8 @@ if (msg != null) {
 	</table>
 </form>
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>
 <script>
 document.querySelector('button[type="reset"]').addEventListener('click', function(e){
-	location.href = 'board.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>&bno=<%=board.getBoardNo()%>';
+	location.href = 'board.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${page}&bno=${boardvo.boardNo}';
 });
 </script>

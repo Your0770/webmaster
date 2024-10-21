@@ -1,7 +1,6 @@
 <%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="../includes/header.jsp"></jsp:include>
 <h3>삭제화면</h3>
 <% BoardVO board = (BoardVO) request.getAttribute("boardvo"); %>
 <% 
@@ -23,7 +22,6 @@ String sc = (String) request.getAttribute("searchCondition");
 
 
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>
 <script>
 document.querySelector('input[value="아니오"]').addEventListener('click', function(e){
 	location.href = 'board.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>&bno=<%=board.getBoardNo()%>';

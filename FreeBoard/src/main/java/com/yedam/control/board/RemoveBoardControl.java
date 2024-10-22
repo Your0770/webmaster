@@ -1,4 +1,4 @@
-package com.yedam.web;
+package com.yedam.control.board;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class RemoveBoardControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
+//		req.setCharacterEncoding("utf-8");
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
 		String kw = req.getParameter("keyword");
@@ -29,7 +29,7 @@ public class RemoveBoardControl implements Control {
 			req.setAttribute("keyword", kw);
 			req.setAttribute("searchCondition", sc);
 
-			req.getRequestDispatcher("board/removeForm.tiles").forward(req, resp);
+			req.getRequestDispatcher("board/removeBoard.tiles").forward(req, resp);
 
 		} else if(req.getMethod().equals("POST")){
 			if(svc.removeBoard(Integer.parseInt(bno))) {

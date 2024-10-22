@@ -37,6 +37,7 @@
 		
 		</tbody>
 	</table>
+	
 
 </div>
-<script src="js/members.js"></script>
+<script src="js/ajax1.js"></script>

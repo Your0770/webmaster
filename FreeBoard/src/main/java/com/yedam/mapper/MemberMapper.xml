@@ -17,11 +17,13 @@
 		from tbl_member
 		where member_id = #{memberId}
 	</select>
-	<select id="loginMember" resultType="com.yedam.vo.MemberVO" parameterType="string">
+	<select id="loginMember" resultType="com.yedam.vo.MemberVO"
+		parameterType="string">
 		select *
 		from tbl_member
 		where member_id = #{id}
-		and password = #{pw}
+		and
+		password = #{pw}
 	</select>
 	<insert id="insertMember" parameterType="member">
 		insert into tbl_member

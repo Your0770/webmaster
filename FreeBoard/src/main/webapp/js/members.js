@@ -1,5 +1,44 @@
 /**
  * members.js
+ * 
+ * 
+	<table class="table">
+		<tr>
+			<th>회원ID</th>
+			<td><input type="text" id="mid"></td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" id="mname"></td>
+		</tr>
+		<tr>
+			<th>연락처</th>
+			<td><input type="text" id="mphone"></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2"><button id="addBtn">등록</button></td>
+		</tr>
+	</table>
+	
+<div id="show">
+
+
+	<!-- 회원목록 출력 -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>회원아이디</th>
+				<th>회원이름</th>
+				<th>연락처</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		</tbody>
+	</table>
+	</div>
+ * 
  */
 // jsp => req.getRequestDispatcher("....tiles").forward(req.resp);
 // json => json 데이터 활용 페이지 작성
@@ -27,7 +66,7 @@ document.querySelector('#addBtn').addEventListener("click", function(e) {
 
 
 
-
+// 1.목록출력
 fetch('memberJson.do')
 	.then(resolve => resolve.json())
 	.then(result => {
@@ -67,18 +106,18 @@ function deleteRowFun(e) {
 	//console.log(e.target.parentElement.parentElement.firstElementChild.innerText);
 	console.log(e.target.parentElement.parentElement.dataset.id);
 	let id = e.target.parentElement.parentElement.dataset.id;
-	fetch('removeMemberJson.do?id='+id)
-	.then(resolve => resolve.json())
-	.then(result => {
-		console.log(result);
-		if(result.retCode == 'OK'){
-		e.target.parentElement.parentElement.remove();
-			
-		} else if(result.retCode == 'FAIL'){
-			alert('처리중 에러 발생');
-		}
-	})
-	.catch(err => console.log(err))
+	fetch('removeMemberJson.do?id=' + id)
+		.then(resolve => resolve.json())
+		.then(result => {
+			console.log(result);
+			if (result.retCode == 'OK') {
+				e.target.parentElement.parentElement.remove();
+
+			} else if (result.retCode == 'FAIL') {
+				alert('처리중 에러 발생');
+			}
+		})
+		.catch(err => console.log(err))
 
 
 

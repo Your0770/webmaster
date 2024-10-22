@@ -26,9 +26,11 @@ import com.yedam.control.member.MemberAddFormControl;
 import com.yedam.control.member.MemberJsonControl;
 import com.yedam.control.member.MemberListControl;
 import com.yedam.control.member.RemoveMemberControl;
+import com.yedam.control.reply.ReplyListControl;
 
 //@WebServlet("*.do")
 public class FrontController extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	Map<String, Control> map;
 	
 	public FrontController() {
@@ -60,6 +62,9 @@ public class FrontController extends HttpServlet{
 		map.put("/memberJson.do", new MemberJsonControl());
 		map.put("/addMemberJson.do", new AddMemberControl());
 		map.put("/removeMemberJson.do", new RemoveMemberControl());
+		
+		//댓글
+		map.put("/replyList.do", new ReplyListControl());
 	}
 	
 	@Override

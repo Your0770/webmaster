@@ -28,10 +28,5 @@ public class Apptest {
 		System.out.println(svc.getReply(2).toString());
 		System.out.println();
 		
-		List<ReplyVO> list = svc.replyList(121);
-		for(ReplyVO li : list) {
-			System.out.println(li.toString());
-		}
-		
 	}
 }

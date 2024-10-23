@@ -4,15 +4,42 @@
  */
 
 const svc = {
-	relist(bno = 1,successFnc, errorFnc) { //목록 출력
+	// 1. 목록
+	relist(param = { bno, page }, successFnc, errorFnc) { //목록 출력
 		// Ajax 호출
-		fetch('replyList.do?bno=' + bno)
+		fetch('replyList.do?bno=' + param.bno + '&page=' + param.page)
 			.then(resolve => resolve.json())
 			.then(successFnc)
 			.catch(errorFnc)
 
+	},
+	
+	// 2. 삭제
+	removeReply(rno = 1, successFnc, errorFnc) {
+		// Ajax 호출
+		fetch('removeReply.do?rno=' + rno)
+			.then(resolve => resolve.json())
+			.then(successFnc)
+			.catch(errorFnc)
+	},
+	
+	// 3. 추가
+	addReply(param = { bno, reply, replyer }, successFnc, errorFnc) {
+		// Ajax 호출
+		fetch('addReply.do?bno=' + param.bno + '&reply=' + param.reply + '&replyer=' + param.replyer)
+			.then(resolve => resolve.json())
+			.then(successFnc)
+			.catch(errorFnc)
+	},
+	
+	// 4. 댓글카운트
+	getReplyCount(bno = 1, successFnc, errorFnc){
+		// Ajax 호출
+		fetch('replyCount.do?bno=' + bno)
+			.then(resolve => resolve.json())
+			.then(successFnc)
+			.catch(errorFnc)
 	}
+	
+	
 }
-
-let bno = document.querySelector('form table tr:nth-child(1) td').innerHTML;
-console.log(bno);

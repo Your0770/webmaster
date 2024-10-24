@@ -11,7 +11,7 @@ import com.yedam.service.ReplyService;
 import com.yedam.service.ReplyServiceImpl;
 
 public class RemoveReplyControl implements Control {
-
+	
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 파라미터: rno 삭제 -> OK/FAIL json 형태 반환
@@ -23,7 +23,7 @@ public class RemoveReplyControl implements Control {
 		} else {
 			resp.getWriter().print("{\"retCode\": \"FAIL\"}");
 		}
-
+		
 	}
-
+	
 }

@@ -1,32 +1,24 @@
 package com.yedam.test;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.yedam.common.DataSource;
-import com.yedam.mapper.ReplyMapper;
-import com.yedam.service.ReplyService;
-import com.yedam.service.ReplyServiceImpl;
-import com.yedam.vo.ReplyVO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.service.BoardService;
+import com.yedam.service.BoardServiceImpl;
 
 public class Apptest {
 	public static void main(String[] args) {
-		SqlSession sqlSession = DataSource.getInstance().openSession(true);
-		ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
-				
-		ReplyVO rep = new ReplyVO();
-		rep.setReply("댓글테스트");
-		rep.setReplyer("user1");
-		rep.setBoardNo(121);
+		BoardService svc = new BoardServiceImpl();
+		List<Map<String, Object>> result = svc.countByWriter();
 		
-	
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(result);
+		System.out.println(json);
 		
-		ReplyService svc = new ReplyServiceImpl();
-//		svc.addReply(rep);
-//		svc.removeReply(1);
-		System.out.println(svc.getReply(2).toString());
-		System.out.println();
+		
+		
 		
 	}
 }

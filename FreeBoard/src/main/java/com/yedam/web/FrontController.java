@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.ChartControl;
+import com.yedam.control.CountByWriterControl;
 import com.yedam.control.javascriptControl;
 import com.yedam.control.board.AddBoardControl;
 import com.yedam.control.board.AddBoardForm;
@@ -18,6 +20,11 @@ import com.yedam.control.board.BoardControl;
 import com.yedam.control.board.BoardListControl;
 import com.yedam.control.board.ModifyBoardControl;
 import com.yedam.control.board.RemoveBoardControl;
+import com.yedam.control.event.AddEventControl;
+import com.yedam.control.event.EventListControl;
+import com.yedam.control.event.fullCalendarControl;
+import com.yedam.control.event.removeEventControl;
+import com.yedam.control.event.selectEventControl;
 import com.yedam.control.member.AddMemberControl;
 import com.yedam.control.member.LoginControl;
 import com.yedam.control.member.LogoutControl;
@@ -71,6 +78,16 @@ public class FrontController extends HttpServlet{
 		map.put("/removeReply.do", new RemoveReplyControl());
 		map.put("/addReply.do", new AddReplyControl());
 		map.put("/replyCount.do", new ReplyCountControl());
+		
+		//차트
+		map.put("/chart.do", new ChartControl());
+		map.put("/countByWriter.do", new CountByWriterControl());
+		
+		map.put("/fullCalendar.do", new fullCalendarControl());
+		map.put("/eventList.do", new EventListControl());
+		map.put("/addEvent.do", new AddEventControl());
+		map.put("/removeEvent.do", new removeEventControl());
+		map.put("/selectEvent.do", new selectEventControl());
 	}
 	
 	@Override

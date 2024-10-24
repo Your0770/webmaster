@@ -11,7 +11,7 @@ import com.yedam.vo.MemberVO;
 //mysql (insertMember, updateMember)
 //-> oracle (memberInsert, memberUpdate)
 public class MemberServiceImpl implements MemberService {
-
+	
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 	
@@ -19,12 +19,12 @@ public class MemberServiceImpl implements MemberService {
 	public boolean addMember(MemberVO member) {
 		return mapper.insertMember(member) == 1;
 	}
-
+	
 	@Override
 	public boolean retireMember(String memberId) {
 		return mapper.deleteMember(memberId) == 1;
 	}
-
+	
 	@Override
 	public List<MemberVO> memberList() {
 		return mapper.members();

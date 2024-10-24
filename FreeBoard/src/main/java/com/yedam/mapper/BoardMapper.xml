@@ -16,7 +16,8 @@
 				</when>
 				<when test="searchCondition == 'TW'.toString() ">
 					(title like '%'||#{keyword}||'%')
-					or (Writer like '%'||#{keyword}||'%')
+					or (Writer like
+					'%'||#{keyword}||'%')
 				</when>
 			</choose>
 		</where>
@@ -37,7 +38,8 @@
 				</when>
 				<when test="searchCondition == 'TW'.toString() ">
 					(title like '%'||#{keyword}||'%')
-					or (Writer like '%'||#{keyword}||'%')
+					or (Writer like
+					'%'||#{keyword}||'%')
 				</when>
 			</choose>
 		</where>
@@ -70,7 +72,8 @@
 		, writer
 		, img
 		)
-		values (board_seq.nextval, #{title},
+		values (board_seq.nextval,
+		#{title},
 		#{content} , #{writer} , #{img})
 	</insert>
 	<update id="updateBoard" parameterType="board">
@@ -94,4 +97,11 @@
 		delete from tbl_board
 		where board_no = #{boardNo}
 	</delete>
+	<select id="countByWriter" resultType="hashmap">
+		select writer as "writer", member_name as "member_name", count(1) as "count"
+		from tbl_board b
+		join tbl_member m
+		on b.writer = m.member_id
+		group by writer, member_name
+	</select>
 </mapper>

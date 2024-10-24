@@ -6,15 +6,24 @@
 	<select id="members" resultType="member">
 		select * from tbl_member
 	</select>
-	<select id='selectMember' parameterType="string" resultType="member">
+	<select id='selectMember' parameterType="string">
+		resultType="member">
 		select member_id
-		      ,member_name
-		      ,password
-		      ,phone
-		      ,responsibility
-		      ,creation_date		
+		,member_name
+		,password
+		,phone
+		,responsibility
+		,creation_date
 		from tbl_member
 		where member_id = #{memberId}
+	</select>
+	<select id="loginMember" resultType="com.yedam.vo.MemberVO"
+		parameterType="string">
+		select *
+		from tbl_member
+		where member_id = #{id}
+		and
+		password = #{pw}
 	</select>
 	<insert id="insertMember" parameterType="member">
 		insert into tbl_member
@@ -37,7 +46,7 @@
 		where member_id = #{memberId}
 	</update>
 	<delete id="deleteMember" parameterType="string">
-		delete from tbl_member 
+		delete from tbl_member
 		where member_id = #{memberId}
 	</delete>
 

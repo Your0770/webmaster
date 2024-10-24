@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="../includes/header.jsp"></jsp:include>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h3>등록화면</h3>
-<%
-String msg = (String) request.getAttribute("msg");
-if (msg != null) {
-%>
-<p><%=msg%></p>
-<%
-}
-%>
-<form action="addBoard.do" method="get">
+
+<c:if test="${msg !=null }">
+	<p style="color: red;">${msg }</p>
+</c:if>
+<form action="addBoard.do" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="writer" value="${logId }">
 	<table class="table">
 		<tr>
 			<th>제목</th>
@@ -22,8 +19,12 @@ if (msg != null) {
 					class="form-control"></textarea></td>
 		</tr>
 		<tr>
+			<th>이미지</th>
+			<td><input type="file" name="img" class="form-control"></td>
+		</tr>
+		<tr>
 			<th>작성자</th>
-			<td><input type="text" name="writer" class="form-control"></td>
+			<td>${logId }</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
@@ -37,4 +38,3 @@ if (msg != null) {
 	</table>
 </form>
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>

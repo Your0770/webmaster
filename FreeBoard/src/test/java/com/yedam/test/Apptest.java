@@ -1,22 +1,24 @@
 package com.yedam.test;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.yedam.common.DataSource;
-import com.yedam.mapper.BoardMapper;
-import com.yedam.vo.BoardVO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.service.BoardService;
+import com.yedam.service.BoardServiceImpl;
 
 public class Apptest {
 	public static void main(String[] args) {
-		SqlSession sqlSession = DataSource.getInstance().openSession();
-		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+		BoardService svc = new BoardServiceImpl();
+		List<Map<String, Object>> result = svc.countByWriter();
 		
-		List<BoardVO> list = mapper.listWithPage(3);
-		for(BoardVO bvo2 : list) {
-			System.out.println(bvo2.toString());
-		}
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(result);
+		System.out.println(json);
+		
+		
+		
 		
 	}
 }

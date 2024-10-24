@@ -1,11 +1,5 @@
 package com.yedam.common;
 
-import java.util.List;
-
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
-
 import lombok.Data;
 
 @Data
@@ -14,10 +8,8 @@ public class PageDTO {
 	private boolean prev, next;
 	private int page; //현재페이지
 	
-	public PageDTO(int page) {
-		BoardService svc = new BoardServiceImpl();
-		List<BoardVO> list = svc.board();
-		int totalCnt = list.size();
+	public PageDTO(int page, int totalCnt) {
+		
 		this.endPage = (int)Math.ceil(page / 10.0) *10; 
 		this.startPage = this.endPage - 9; 
 		this.page = page;

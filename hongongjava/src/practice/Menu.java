@@ -7,6 +7,7 @@ public class Menu {
 	public static void main(String[] args) {
 		String[] menu = {
 				"다시"
+<<<<<<< HEAD
 //   장뚝, 바뷔치, 미성회초밥, 쌀국수, 만두, 짬뽕집, 버거킹, 편의점, 돈까스, 국밥, 맘터, 국수, 이가네, 화교집				
 //				,"선분(솥밥), 소원반점(중국집), 트라이브(양식), 소머리국밥(국밥)" 
 				,"장뚝" 
@@ -15,12 +16,21 @@ public class Menu {
 				,"쌀국수"
 				,"만두"
 				,"짬뽕집"
+=======
+				,"중국집"
+				,"후라토"
+>>>>>>> branch 'master' of https://github.com/Your0770/webmaster.git
 //				,"버거킹"
 //				,"편의점" 
+<<<<<<< HEAD
+=======
+				,"장뚝" 
+				,"아웃백" 
+>>>>>>> branch 'master' of https://github.com/Your0770/webmaster.git
 //				,"돈까스" 
-				,"국밥" 
-//				,"맘터" 
-//				,"국수" 
+//				,"국밥" 
+				,"맘터" 
+				,"국수" 
 				,"이가네"
 				,"화교집"
 				};

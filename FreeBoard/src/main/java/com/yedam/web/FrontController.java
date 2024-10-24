@@ -6,15 +6,41 @@ import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.ChartControl;
+import com.yedam.control.CountByWriterControl;
+import com.yedam.control.javascriptControl;
+import com.yedam.control.board.AddBoardControl;
+import com.yedam.control.board.AddBoardForm;
+import com.yedam.control.board.BoardControl;
+import com.yedam.control.board.BoardListControl;
+import com.yedam.control.board.ModifyBoardControl;
+import com.yedam.control.board.RemoveBoardControl;
+import com.yedam.control.event.AddEventControl;
+import com.yedam.control.event.EventListControl;
+import com.yedam.control.event.fullCalendarControl;
+import com.yedam.control.event.removeEventControl;
+import com.yedam.control.event.selectEventControl;
+import com.yedam.control.member.AddMemberControl;
+import com.yedam.control.member.LoginControl;
+import com.yedam.control.member.LogoutControl;
+import com.yedam.control.member.MemberAddControl;
+import com.yedam.control.member.MemberAddFormControl;
+import com.yedam.control.member.MemberJsonControl;
+import com.yedam.control.member.MemberListControl;
+import com.yedam.control.member.RemoveMemberControl;
+import com.yedam.control.reply.AddReplyControl;
+import com.yedam.control.reply.RemoveReplyControl;
+import com.yedam.control.reply.ReplyCountControl;
+import com.yedam.control.reply.ReplyListControl;
 
-@WebServlet("*.do")
+//@WebServlet("*.do")
 public class FrontController extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	Map<String, Control> map;
 	
 	public FrontController() {
@@ -37,7 +63,31 @@ public class FrontController extends HttpServlet{
 		map.put("/addBoard.do", new AddBoardControl());
 		// 글수정 (수정화면 -> 변경처리)
 		map.put("/modifyBoard.do", new ModifyBoardControl());
-		map.put("/removeBoard.do", new removeBoardControl());
+		map.put("/removeBoard.do", new RemoveBoardControl());
+		map.put("/loginForm.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
+		map.put("/javascript.do", new javascriptControl());
+		
+		//json 관련
+		map.put("/memberJson.do", new MemberJsonControl());
+		map.put("/addMemberJson.do", new AddMemberControl());
+		map.put("/removeMemberJson.do", new RemoveMemberControl());
+		
+		//댓글
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new AddReplyControl());
+		map.put("/replyCount.do", new ReplyCountControl());
+		
+		//차트
+		map.put("/chart.do", new ChartControl());
+		map.put("/countByWriter.do", new CountByWriterControl());
+		
+		map.put("/fullCalendar.do", new fullCalendarControl());
+		map.put("/eventList.do", new EventListControl());
+		map.put("/addEvent.do", new AddEventControl());
+		map.put("/removeEvent.do", new removeEventControl());
+		map.put("/selectEvent.do", new selectEventControl());
 	}
 	
 	@Override

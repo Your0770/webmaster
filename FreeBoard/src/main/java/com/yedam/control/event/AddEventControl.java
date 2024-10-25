@@ -23,6 +23,8 @@ public class AddEventControl implements Control {
 		String title = req.getParameter("title");
 		String startDate = req.getParameter("start");
 		String endDate = req.getParameter("end");
+		if(startDate.length() > 19) startDate = startDate.substring(0, 19);
+		if(endDate.length() > 19) endDate = endDate.substring(0, 19);
 		
 		EventVO event = new EventVO();
 		event.setTitle(title);

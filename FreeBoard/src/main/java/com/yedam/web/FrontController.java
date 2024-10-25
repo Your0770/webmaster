@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Control;
 import com.yedam.control.ChartControl;
 import com.yedam.control.CountByWriterControl;
+import com.yedam.control.Exe1Control;
+import com.yedam.control.Exe2Control;
 import com.yedam.control.javascriptControl;
 import com.yedam.control.board.AddBoardControl;
 import com.yedam.control.board.AddBoardForm;
@@ -88,6 +90,8 @@ public class FrontController extends HttpServlet{
 		map.put("/addEvent.do", new AddEventControl());
 		map.put("/removeEvent.do", new removeEventControl());
 		map.put("/selectEvent.do", new selectEventControl());
+		map.put("/exe1.do", new Exe1Control());
+		map.put("/exe2.do", new Exe2Control());
 	}
 	
 	@Override

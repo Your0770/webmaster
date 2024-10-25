@@ -17,8 +17,10 @@ public class selectEventControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 
 		String title = req.getParameter("title");
-		String startDate = req.getParameter("start").substring(0, 19);
-		String endDate = req.getParameter("end").substring(0, 19);
+		String startDate = req.getParameter("start");
+		String endDate = req.getParameter("end");
+		if(startDate.length() > 19) startDate = startDate.substring(0, 19);
+		if(endDate.length() > 19) endDate = endDate.substring(0, 19);
 
 		EventVO event = new EventVO();
 		event.setTitle(title);

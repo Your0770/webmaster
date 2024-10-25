@@ -6,7 +6,8 @@
 <meta charset='utf-8' />
 <script src='js/index.global.js'></script>
 <script>
-
+	let modalArg = null;	//arg 공유할 목적
+	var calendar = null;	//calendar 공유할 목적
   document.addEventListener('DOMContentLoaded', async function() {
     var calendarEl = document.getElementById('calendar');
     
@@ -33,7 +34,7 @@
 	  											//})
 												//.catch(err => console.log(err));
     
-      var calendar = new FullCalendar.Calendar(calendarEl, {
+      calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
@@ -44,27 +45,24 @@
       selectable: true,
       selectMirror: true,
       select: function(arg) {
+    	  modalShow(arg);
+  	  /*
         var title = prompt('Event Title:');
         if (title) {
         	console.log(arg);	//start, end
-        	//fetch('selectEvent.do?title=' + title + '&start=' + arg.startStr + '&end=' + arg.endStr )
         	
-        	fetch('addEvent.do?title=' + title + '&start=' + arg.startStr + '&end=' + arg.endStr )
+        	
+        	fetch('selectEvent.do?title=' + title + '&start=' + arg.startStr + '&end=' + arg.endStr )
         	.then(resolve => resolve.json())
         	.then(result => {
-        		console.log(result);
-        	// title, start, end
-        	//출력
-          		calendar.addEvent({
-            	title: title,
-           		start: arg.start,
-           		end: arg.end,
-           		allDay: arg.allDay
-          		})
+        		
         	})
         	.catch(err => console.log(err));
         	
+        
+        	
         }
+     	*/
         calendar.unselect()
       },
       eventClick: function(arg) {
@@ -94,6 +92,7 @@
   });
 
 </script>
+<script src="js/calendarModal.js"></script>
 <style>
 body {
 	margin: 40px 10px;
@@ -111,6 +110,34 @@ body {
 <body>
 
 	<div id='calendar'></div>
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch demo modal</button>
+	
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						타이틀: <input type="text" id="title"><br>
+						시작일시: <input type="date" id="start" onchange="startChange(event)"><br>
+						종료일시: <input type="date" id="end" onchange="endChange(event)"><br>
+						<input type="datetime-local" id="sTime"><br>
+						<input type="datetime-local" id="eTime"><br>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" onclick="modalSave()">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 </body>
 </html>

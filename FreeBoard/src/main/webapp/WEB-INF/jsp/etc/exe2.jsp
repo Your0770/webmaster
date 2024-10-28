@@ -29,7 +29,7 @@
 		finaldate(year, month);
 		console.log('마지막날 = ' + finalday);
 		let day = firstDate.getDay();
-		console.log(day);
+		console.log('시작 = '+day);
 		let tr = document.createElement('tr');
 		for (let d = 1; d <= day; d++) {
 			let td = document.createElement('td');
@@ -116,7 +116,6 @@
 		</table>
 
 	</div>
-	<script src="js/exe2.js"></script>
 </body>
 
 </html>
